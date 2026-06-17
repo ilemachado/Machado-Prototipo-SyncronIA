@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SyncronIA · Prototipo interactivo · Experiencia completa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+</head>
+<body style="margin:0;background:#0E0F13;">
+
+<template id="__bundler_thumbnail" data-bg-color="#0E0F13">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0E0F13"/>
+    <circle cx="600" cy="400" r="300" fill="#C8F135" opacity="0.10"/>
+    <circle cx="600" cy="400" r="170" fill="#C8F135" opacity="0.22"/>
+    <text x="600" y="372" font-family="'Barlow Condensed',sans-serif" font-size="120" font-weight="900" fill="#EDF0F7" text-anchor="middle" letter-spacing="4">SYNCRON<tspan fill="#C8F135">IA</tspan></text>
+    <text x="600" y="452" font-family="monospace" font-size="26" fill="#5C6280" text-anchor="middle" letter-spacing="8">CHROMECAST · IA</text>
+  </svg>
+</template>
+
+<div id="root"></div>
+
+<script type="text/babel" src="prototype-ui.jsx"></script>
+<script type="text/babel" src="prototype-account.jsx"></script>
+<script type="text/babel" src="prototype-flow-a.jsx"></script>
+<script type="text/babel" src="prototype-flow-b.jsx"></script>
+<script type="text/babel" src="prototype-flow-c.jsx"></script>
+<script type="text/babel" src="prototype-unified.jsx"></script>
+
+<style>
+  /* ─── Page shell ─── */
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    background:
+      radial-gradient(80% 60% at 50% 0%, #14161e 0%, #0E0F13 60%),
+      #0E0F13;
+    padding: 80px 24px 120px;
+    color: var(--t1);
+  }
+  .page-header {
+    max-width: 1320px;
+    margin: 0 auto 64px;
+    text-align: left;
+  }
+  .page-eyebrow {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--neon);
+    background: var(--neon-dim);
+    border: 1px solid rgba(200,241,53,0.3);
+    padding: 5px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .page-wordmark {
+    font-family: var(--f-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--t1);
+    margin-bottom: 24px;
+  }
+  .page-wordmark span { color: var(--neon); }
+  .page-title {
+    font-family: var(--f-display);
+    font-size: clamp(48px, 7.5vw, 96px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    color: var(--t0);
+    margin-bottom: 14px;
+  }
+  .page-subtitle {
+    font-family: var(--f-display);
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--t2);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .page-sub {
+    font-family: var(--f-body);
+    font-size: 18px;
+    color: var(--t2);
+    line-height: 1.55;
+    max-width: 760px;
+  }
+  .page-meta {
+    margin-top: 24px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--t3);
+    text-transform: uppercase;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 16px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .page-meta b { color: var(--neon); font-weight: 400; }
+
+  .flow-section {
+    max-width: 1320px;
+    margin: 0 auto 96px;
+  }
+  .flow-section-head {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: end;
+  }
+  .flow-section-num {
+    font-family: var(--f-display);
+    font-size: 80px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--neon);
+    line-height: 0.85;
+    flex-shrink: 0;
+    width: 110px;
+    text-shadow: 0 0 40px var(--neon-glow);
+  }
+  .flow-section-meta {
+    flex: 1;
+  }
+  .flow-section-tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--t3);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .flow-section-title {
+    font-family: var(--f-display);
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    color: var(--t0);
+  }
+  .flow-section-sub {
+    margin-top: 8px;
+    font-size: 16px;
+    color: var(--t2);
+    line-height: 1.55;
+    max-width: 720px;
+  }
+  .flow-section-stage {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .flow-section-stage-inner {
+    width: 1280px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 30px 90px rgba(0,0,0,0.55),
+      0 0 80px rgba(200,241,53,0.04);
+    transform-origin: top center;
+    flex-shrink: 0;
+  }
+  .flow-section-stage-inner .flow-rail { border-radius: 0; }
+
+  .phase-legend {
+    max-width: 1280px;
+    margin: 22px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--t3);
+    text-transform: uppercase;
+  }
+  .phase-legend b { font-weight: 500; margin-right: 6px; }
+  .phase-legend .leg-arrow { color: var(--t4); }
+
+  /* footer */
+  .page-foot {
+    max-width: 1320px;
+    margin: 80px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--t3);
+    text-transform: uppercase;
+  }
+  .page-foot b { color: var(--t1); font-weight: 400; }
+</style>
+
+<script type="text/babel" data-presets="env,react">
+const { useState, useEffect, useRef, useLayoutEffect } = React;
+
+/* ─── Auto-scaling stage: scales 1280×730 native to fit container width ─── */
+function ScaledStage({ children, width = 1280, height = 730 }) {
+  const outerRef = useRef();
+  const [scale, setScale] = useState(1);
+
+  useLayoutEffect(() => {
+    const calc = () => {
+      const el = outerRef.current;
+      if (!el) return;
+      const w = el.clientWidth;
+      setScale(Math.min(1, w / width));
+    };
+    calc();
+    const ro = new ResizeObserver(calc);
+    if (outerRef.current) ro.observe(outerRef.current);
+    window.addEventListener('resize', calc);
+    return () => { ro.disconnect(); window.removeEventListener('resize', calc); };
+  }, [width]);
+
+  return (
+    <div
+      ref={outerRef}
+      className="flow-section-stage"
+      style={{ height: height * scale }}
+    >
+      <div
+        className="flow-section-stage-inner"
+        style={{
+          width,
+          height,
+          transform: `scale(${scale})`,
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div className="page">
+      <header className="page-header">
+        <div className="page-eyebrow">◆ Chromecast IA · Taller de producción III · Entrega</div>
+        <h1 className="page-title">
+          <span style={{ color: 'var(--neon)' }}>SyncronIA</span>
+        </h1>
+        <div className="page-subtitle">Una sola experiencia continua</div>
+        <p className="page-sub">
+          Prototipo interactivo. Un único recorrido sin cortes: arrancás en la
+          <b style={{ color: 'var(--t1)', fontWeight: 600 }}> configuración inicial</b>,
+          llegás al <b style={{ color: 'var(--t1)', fontWeight: 600 }}>Inicio</b>, que funciona como hub
+          y se bifurca (Decidí por mí · Detalle · Voz) y la
+          <b style={{ color: 'var(--t1)', fontWeight: 600 }}> sesión</b> sigue hasta el cierre
+          con continuidad inteligente.
+        </p>
+        <div className="page-meta">
+          <span><b>Alumna ·</b> Agustina Ileana Machado</span>
+          <span><b>Profesora ·</b> Camila Peralta Ramos</span>
+          <span><b>Materia ·</b> Taller de producción III — UP 2026</span>
+        </div>
+      </header>
+
+      <main className="flow-section">
+        <ScaledStage width={1280} height={772}><FlowUnified /></ScaledStage>
+        <div className="phase-legend">
+          <span><b style={{ color: 'var(--neon)' }}>01</b> Configuración inicial</span>
+          <span className="leg-arrow">→</span>
+          <span><b style={{ color: 'var(--neon)' }}>02</b> Inicio · bifurcación</span>
+          <span className="leg-arrow">→</span>
+          <span><b style={{ color: 'var(--neon)' }}>03</b> Sesión · continuidad · cierre</span>
+        </div>
+      </main>
+
+      <footer className="page-foot">
+        <span><b>SyncronIA</b> · Del browsing al understanding</span>
+        <span>Prototipo interactivo · Experiencia continua · 2026</span>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>
